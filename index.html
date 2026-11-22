@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f4ed" />
+    <title>Würfel-Labor | Gesetz der großen Zahlen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  </head>
+  <body>
+    <main id="app" class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Würfel-Labor Startseite">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span>WÜRFEL<span class="brand-light">LABOR</span></span>
+        </a>
+        <div class="connection"><span class="connection-dot"></span><span id="connection-label">Verbinde …</span></div>
+      </header>
+
+      <section id="welcome-view" class="welcome-view">
+        <div class="welcome-copy">
+          <p class="eyebrow">MATHEMATIK · EXPERIMENT</p>
+          <h1>Was passiert,<br />wenn wir <em>oft</em> würfeln?</h1>
+          <p class="intro">Sammelt gemeinsam Würfe und beobachtet, wie sich die Ergebnisse entwickeln.</p>
+          <button id="create-session" class="primary-button" type="button">Experiment starten <span aria-hidden="true">↗</span></button>
+          <p id="setup-note" class="setup-note" hidden>Firebase ist noch nicht eingerichtet. Die Verbindungseinstellungen stehen in <code>firebase-config.js</code>.</p>
+        </div>
+        <div class="welcome-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="hero-die"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <span class="art-label label-one">1 / 6 ?</span><span class="art-label label-two">ROLL THE DICE</span>
+        </div>
+      </section>
+
+      <section id="teacher-view" class="teacher-view" hidden>
+        <div class="session-heading">
+          <div><p class="eyebrow">LIVE-EXPERIMENT</p><h1>Die Würfel-Ergebnisse</h1></div>
+          <div class="session-actions"><button id="share-session" class="icon-button" type="button" title="Teilnahmelink kopieren" aria-label="Teilnahmelink kopieren">↗</button><button id="new-session" class="quiet-button" type="button">Neue Runde</button></div>
+        </div>
+        <div class="teacher-grid">
+          <section class="chart-panel" aria-label="Verlauf der relativen Häufigkeiten">
+            <div class="panel-heading"><div><span class="panel-kicker">RELATIVE HÄUFIGKEIT</span><p class="panel-subtitle">Anteil je Augenzahl im Verlauf</p></div><div class="total-block"><strong id="total-rolls">0</strong><span>WÜRFE</span></div></div>
+            <div class="chart-wrap"><canvas id="frequency-chart" aria-label="Liniendiagramm der sechs relativen Häufigkeiten"></canvas></div>
+            <div id="legend" class="legend" aria-label="Augenzahlen"></div>
+          </section>
+          <aside class="side-panel">
+            <div class="join-panel"><p class="panel-kicker">MITMACHEN</p><p class="join-copy">Scanne den Code oder öffne den Teilnahmelink auf jedem Tablet.</p><div id="qr-code" class="qr-code"></div><button id="copy-link" class="copy-button" type="button">Link kopieren <span aria-hidden="true">↗</span></button><p class="session-code">RUNDE <span id="session-short-code">—</span></p></div>
+            <div class="counts-panel"><p class="panel-kicker">BISHERIGE WÜRFE</p><div id="face-counts" class="face-counts"></div></div>
+          </aside>
+        </div>
+        <p class="teacher-prompt">Was fällt euch auf? Was könnte bei sehr vielen Würfen passieren?</p>
+      </section>
+
+      <section id="student-view" class="student-view" hidden>
+        <div class="student-heading"><p class="eyebrow">GEMEINSAMES WÜRFEL-EXPERIMENT</p><h1>Was hast du gewürfelt?</h1><p>Tippe auf die passende Augenzahl.</p></div>
+        <div id="dice-buttons" class="dice-buttons"></div>
+        <div id="student-feedback" class="student-feedback" aria-live="polite">Würfle einmal und tippe dann hier.</div>
+        <p class="student-total"><strong id="student-total-rolls">0</strong> Würfe in dieser Runde</p>
+      </section>
+      <footer class="footer"><span>GESETZ DER GROSSEN ZAHLEN</span><span id="round-id"></span></footer>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
