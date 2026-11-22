@@ -1,0 +1,9 @@
+- Die 1/6 auf der Startseite muss weg.
+- Der Rote Punkt auf dem Würfel muss weg.
+- Ich muss vergangende Sessions angezeigt bekommen
+- Die Startseite braucht eine andere URL/anmeldung damit die schüler keien neuen runden starten können. 
+- Die app muss robust sein sodass die tablets dort 20/30 Minuten liegen können ohne sich abzumelden
+- Y-Achse überdenken.
+- Was passiert beim ersten wurf.
+- Frage auf der Startseite weg
+- Würfel Logo muss anders
