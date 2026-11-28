@@ -23,6 +23,8 @@ py -m http.server 8000
 
 Öffne danach `http://localhost:8000`. Die Anwendung benötigt für die Synchronisierung eine Internetverbindung und die eingerichtete Firebase-Konfiguration.
 
+Die Auswahlbilder der Legosteine kannst du ohne Firebase lokal unter `http://localhost:8000/brick-preview.html` ansehen.
+
 ## Auf GitHub Pages veröffentlichen
 
 Lade die Dateien in ein GitHub-Repository und aktiviere unter **Settings > Pages** die Veröffentlichung aus dem `main`-Branch und dem Projektordner `/ (root)`. Die App ist statisch; ein eigener Server ist nicht nötig.

@@ -118,6 +118,15 @@ h1 { margin: 14px 0 0; font-size: clamp(42px, 5vw, 72px); line-height: 1.03; let
 .brick-tube-hole { fill: #0b3028; stroke: #16483d; stroke-width: 1; }
 .brick-outline { fill: none; stroke: #104f43; stroke-width: 2; stroke-linejoin: round; }
 .brick-label { color: #48534e; font-size: 13px; font-weight: 600; }
+.brick-preview-page { width: min(940px, 100% - 36px); min-height: 100vh; margin: 0 auto; padding: 32px 0; }
+.brick-preview-back { color: var(--green); font-size: 14px; text-decoration: none; }
+.brick-preview-heading { margin: 34px 0 28px; }
+.brick-preview-heading h1 { font-size: clamp(36px, 5vw, 56px); }
+.brick-preview-heading > p:last-child { color: var(--muted); }
+.brick-preview-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.brick-preview-card { min-width: 0; min-height: 180px; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 14px 8px; border: 1px solid var(--line); border-radius: 8px; background: #fbfbf7; }
+.brick-preview-card .brick-illustration { width: 100%; max-width: 150px; height: auto; }
+.brick-preview-card figcaption { color: #48534e; font-size: 13px; font-weight: 600; }
 .student-feedback { min-height: 24px; color: var(--green); font-size: 14px; }
 .student-total { margin-top: 34px; color: var(--muted); font: 12px "DM Mono", monospace; }
 .student-total strong { color: var(--ink); font-size: 18px; }
@@ -135,6 +144,8 @@ h1 { margin: 14px 0 0; font-size: clamp(42px, 5vw, 72px); line-height: 1.03; let
 }
 @media (max-width: 620px) {
   .app-shell { width: calc(100% - 28px); }
+  .brick-preview-page { width: calc(100% - 28px); padding-top: 24px; }
+  .brick-preview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .topbar { height: 65px; }
   .teacher-view { padding-top: 24px; }
   .session-heading { align-items: center; gap: 12px; }
