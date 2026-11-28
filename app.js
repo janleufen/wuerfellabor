@@ -132,10 +132,34 @@ function startChart() {
       maintainAspectRatio: false,
       animation: false,
       interaction: { intersect: false, mode: "index" },
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: (item) => `${item.dataset.label}: ${item.formattedValue}%` } } },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: "#fff",
+          borderColor: "#000",
+          borderWidth: 1,
+          titleColor: "#000",
+          bodyColor: "#000",
+          titleFont: { size: 16 },
+          bodyFont: { size: 16 },
+          callbacks: { label: (item) => `${item.dataset.label}: ${item.formattedValue}%` },
+        },
+      },
       scales: {
-        x: { title: { display: true, text: "Anzahl der Würfe", color: "#747d76", font: { family: "DM Mono", size: 10 } }, grid: { display: false }, ticks: { maxTicksLimit: 8, color: "#747d76" } },
-        y: { min: 0, max: 100, title: { display: true, text: "Wahrscheinlichkeit", color: "#747d76", font: { family: "DM Mono", size: 10 } }, grid: { color: "#e7e9e2" }, ticks: { stepSize: 10, color: "#747d76", callback: (value) => `${Math.round(Number(value) / 10)}/10` } },
+        x: {
+          title: { display: true, text: "Anzahl der Würfe", color: "#000", font: { family: "DM Mono", size: 17 } },
+          grid: { display: false, color: "#000" },
+          border: { color: "#000", width: 1 },
+          ticks: { maxTicksLimit: 8, color: "#000", font: { family: "DM Mono", size: 15 } },
+        },
+        y: {
+          min: 0,
+          max: 100,
+          title: { display: true, text: "Wahrscheinlichkeit", color: "#000", font: { family: "DM Mono", size: 17 } },
+          grid: { color: "#000", lineWidth: 1 },
+          border: { color: "#000", width: 1 },
+          ticks: { stepSize: 10, color: "#000", font: { family: "DM Mono", size: 15 }, callback: (value) => `${Math.round(Number(value) / 10)}/10` },
+        },
       },
     },
   });
