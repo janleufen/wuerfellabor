@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120">
+  <style>
+    .brick-face-top { fill: #22866f; }
+    .brick-face-long { fill: #176d5b; }
+    .brick-face-short { fill: #105a4c; }
+    .brick-face-top, .brick-face-bottom, .brick-face-long, .brick-face-short { stroke: #125b4d; stroke-width: 1.5; stroke-linejoin: round; }
+    .brick-studs ellipse { fill: #43a98e; stroke: #126b59; stroke-width: 1.5; }
+    .brick-outline { fill: none; stroke: #104f43; stroke-width: 2; stroke-linejoin: round; }
+  </style>
+  <path class="brick-face-long" d="M22 44 93 79 93 104 22 69Z"/>
+  <path class="brick-face-short" d="M93 79 138 56 138 81 93 104Z"/>
+  <path class="brick-face-top" d="M67 20 138 56 93 79 22 44Z"/>
+  <g class="brick-studs">
+    <ellipse cx="65" cy="31" rx="7" ry="4.5"/><ellipse cx="83" cy="40" rx="7" ry="4.5"/>
+    <ellipse cx="101" cy="49" rx="7" ry="4.5"/><ellipse cx="119" cy="58" rx="7" ry="4.5"/>
+    <ellipse cx="42" cy="43" rx="7" ry="4.5"/><ellipse cx="60" cy="52" rx="7" ry="4.5"/>
+    <ellipse cx="78" cy="61" rx="7" ry="4.5"/><ellipse cx="96" cy="70" rx="7" ry="4.5"/>
+  </g>
+  <path class="brick-outline" d="M67 20 138 56 138 81 93 104 22 69 22 44Z"/>
+</svg>

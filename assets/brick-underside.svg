@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120">
+  <style>
+    .brick-face-long { fill: #176d5b; }
+    .brick-face-short { fill: #105a4c; }
+    .brick-face-bottom { fill: #1a735e; }
+    .brick-face-top, .brick-face-bottom, .brick-face-long, .brick-face-short { stroke: #125b4d; stroke-width: 1.5; stroke-linejoin: round; }
+    .brick-cavity-far, .brick-cavity-left, .brick-cavity-right { fill: #176d5b; stroke: #125b4d; stroke-width: 1; }
+    .brick-cavity-near { fill: #0e5749; stroke: #125b4d; stroke-width: 1; }
+    .brick-cavity-floor { fill: #164b40; stroke: #0c4036; stroke-width: 1; }
+    .brick-tube-wall { fill: #236d59; stroke: #145847; stroke-width: 1; }
+    .brick-tube-bottom { fill: #174b3f; stroke: #236d59; stroke-width: 1; }
+    .brick-tube-opening { fill: #39876e; stroke: #79b29d; stroke-width: 1.5; }
+    .brick-tube-hole { fill: #0b3028; stroke: #16483d; stroke-width: 1; }
+    .brick-outline { fill: none; stroke: #104f43; stroke-width: 2; stroke-linejoin: round; }
+  </style>
+  <path class="brick-face-long" d="M22 44 93 79 93 104 22 69Z"/>
+  <path class="brick-face-short" d="M93 79 138 56 138 81 93 104Z"/>
+  <path class="brick-face-bottom" d="M67 20 138 56 93 79 22 44Z"/>
+  <path class="brick-cavity-far" d="M70 27 129 57 119 62 75 37Z"/>
+  <path class="brick-cavity-left" d="M70 27 36 45 44 50 75 37Z"/>
+  <path class="brick-cavity-right" d="M129 57 93 75 93 69 119 62Z"/>
+  <path class="brick-cavity-near" d="M36 45 93 75 93 69 44 50Z"/>
+  <path class="brick-cavity-floor" d="M75 37 119 62 93 69 44 50Z"/>
+  <g class="brick-tubes">
+    <path class="brick-tube-wall" d="M51 45A8 4 0 1 1 67 45L67 54A8 4 0 1 1 51 54Z"/>
+    <ellipse class="brick-tube-bottom" cx="59" cy="54" rx="8" ry="4"/>
+    <ellipse class="brick-tube-opening" cx="59" cy="45" rx="8" ry="4"/>
+    <ellipse class="brick-tube-hole" cx="59" cy="45" rx="5.2" ry="2.6"/>
+    <path class="brick-tube-wall" d="M71 54A8 4 0 1 1 87 54L87 63A8 4 0 1 1 71 63Z"/>
+    <ellipse class="brick-tube-bottom" cx="79" cy="63" rx="8" ry="4"/>
+    <ellipse class="brick-tube-opening" cx="79" cy="54" rx="8" ry="4"/>
+    <ellipse class="brick-tube-hole" cx="79" cy="54" rx="5.2" ry="2.6"/>
+    <path class="brick-tube-wall" d="M91 63A8 4 0 1 1 107 63L107 72A8 4 0 1 1 91 72Z"/>
+    <ellipse class="brick-tube-bottom" cx="99" cy="72" rx="8" ry="4"/>
+    <ellipse class="brick-tube-opening" cx="99" cy="63" rx="8" ry="4"/>
+    <ellipse class="brick-tube-hole" cx="99" cy="63" rx="5.2" ry="2.6"/>
+  </g>
+  <path class="brick-outline" d="M67 20 138 56 138 81 93 104 22 69 22 44Z"/>
+</svg>

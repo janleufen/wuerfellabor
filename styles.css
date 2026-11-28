@@ -108,20 +108,6 @@ h1 { margin: 14px 0 0; font-size: clamp(48px, 5vw, 76px); line-height: 1.03; let
 .brick-button:hover { transform: translateY(-3px); border-color: var(--green); box-shadow: 0 6px 16px #16392b14; }
 .brick-button:active { transform: scale(.96); }
 .brick-illustration { width: 140px; height: 105px; overflow: visible; filter: drop-shadow(0 5px 3px #19232124); }
-.brick-face-top { fill: #22866f; }
-.brick-face-long { fill: #176d5b; }
-.brick-face-short { fill: #105a4c; }
-.brick-face-bottom { fill: #1a735e; }
-.brick-face-top, .brick-face-bottom, .brick-face-long, .brick-face-short { stroke: #125b4d; stroke-width: 1.5; stroke-linejoin: round; }
-.brick-studs ellipse { fill: #43a98e; stroke: #126b59; stroke-width: 1.5; }
-.brick-cavity-far, .brick-cavity-left, .brick-cavity-right { fill: #176d5b; stroke: #125b4d; stroke-width: 1; }
-.brick-cavity-near { fill: #0e5749; stroke: #125b4d; stroke-width: 1; }
-.brick-cavity-floor { fill: #164b40; stroke: #0c4036; stroke-width: 1; }
-.brick-tube-wall { fill: #236d59; stroke: #145847; stroke-width: 1; }
-.brick-tube-bottom { fill: #174b3f; stroke: #236d59; stroke-width: 1; }
-.brick-tube-opening { fill: #39876e; stroke: #79b29d; stroke-width: 1.5; }
-.brick-tube-hole { fill: #0b3028; stroke: #16483d; stroke-width: 1; }
-.brick-outline { fill: none; stroke: #104f43; stroke-width: 2; stroke-linejoin: round; }
 .brick-label { color: var(--ink); font-size: 17px; font-weight: 700; }
 .brick-preview-page { width: min(940px, 100% - 36px); min-height: 100vh; margin: 0 auto; padding: 32px 0; }
 .brick-preview-back { color: var(--ink); font-size: 17px; text-decoration: none; }
