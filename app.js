@@ -68,6 +68,7 @@ async function loadSessions() {
   const sessionList = document.querySelector("#session-list");
   const emptyMessage = document.querySelector("#no-sessions");
   sessionList.replaceChildren();
+  emptyMessage.hidden = true;
   const snapshot = await get(query(ref(database, "sessions"), orderByChild("ownerUid"), equalTo(uid)));
   const sessions = [];
   snapshot.forEach((sessionSnapshot) => {
@@ -201,8 +202,19 @@ async function initialize() {
       connectionLabel.textContent = "Verbindung fehlgeschlagen";
       console.error(error);
     });
-    if (sessionId) await openSession();
-    else await loadSessions();
+    if (sessionId) {
+      await openSession();
+    } else {
+      try {
+        await loadSessions();
+      } catch (error) {
+        const permissionDenied = error.code === "PERMISSION_DENIED";
+        document.querySelector("#session-feedback").textContent = permissionDenied
+          ? "Firebase verweigert den Zugriff auf die Sitzungsliste. Veröffentliche die aktuellen Datenbankregeln aus database.rules.json."
+          : "Die Sitzungsliste konnte nicht geladen werden. Prüfe die Verbindung.";
+        console.error("Sitzungsliste konnte nicht geladen werden.", error);
+      }
+    }
   } catch (error) {
     connection.classList.add("offline");
     connectionLabel.textContent = "Verbindung fehlgeschlagen";
