@@ -6,11 +6,66 @@ import Chart from "https://cdn.jsdelivr.net/npm/chart.js@4.4.3/auto/+esm";
 
 const colors = ["#197c68", "#e8bd43", "#477d9a", "#c95c87"];
 const positions = [
-  { name: "Aufrecht", className: "upright" },
-  { name: "Auf dem Kopf", className: "upside-down" },
-  { name: "Auf der langen Seite", className: "long-side" },
-  { name: "Auf der kurzen Seite", className: "short-side" },
+  { name: "Lange Seite", artwork: "long-side" },
+  { name: "Kurze Seite", artwork: "short-side" },
+  { name: "Oberseite", artwork: "top" },
+  { name: "Unterseite", artwork: "underside" },
 ];
+const brickArtwork = {
+  "long-side": `
+    <path class="brick-face-top" d="M30 27 116 27 116 70 30 70Z"/>
+    <path class="brick-face-short" d="M116 27 139 40 139 83 116 70Z"/>
+    <path class="brick-face-long" d="M30 27 116 27 139 40 53 40Z"/>
+    <g class="brick-studs">
+      <ellipse cx="41" cy="38" rx="6.5" ry="6.5"/><ellipse cx="62" cy="38" rx="6.5" ry="6.5"/>
+      <ellipse cx="83" cy="38" rx="6.5" ry="6.5"/><ellipse cx="104" cy="38" rx="6.5" ry="6.5"/>
+      <ellipse cx="41" cy="59" rx="6.5" ry="6.5"/><ellipse cx="62" cy="59" rx="6.5" ry="6.5"/>
+      <ellipse cx="83" cy="59" rx="6.5" ry="6.5"/><ellipse cx="104" cy="59" rx="6.5" ry="6.5"/>
+    </g>
+    <path class="brick-outline" d="M30 27 116 27 139 40 139 83 116 70 30 70Z"/>
+  `,
+  "short-side": `
+    <path class="brick-face-long" d="M94 52 79 102 99 94 114 44Z"/>
+    <path class="brick-face-short" d="M56 22 76 14 114 44 94 52Z"/>
+    <path class="brick-face-top" d="M56 22 94 52 79 102 41 72Z"/>
+    <g class="brick-studs">
+      <ellipse cx="57" cy="38" rx="5.6" ry="4.2"/><ellipse cx="66.5" cy="45.5" rx="5.6" ry="4.2"/>
+      <ellipse cx="76" cy="53" rx="5.6" ry="4.2"/><ellipse cx="85.5" cy="60.5" rx="5.6" ry="4.2"/>
+      <ellipse cx="49.5" cy="63" rx="5.6" ry="4.2"/><ellipse cx="59" cy="70.5" rx="5.6" ry="4.2"/>
+      <ellipse cx="68.5" cy="78" rx="5.6" ry="4.2"/><ellipse cx="78" cy="85.5" rx="5.6" ry="4.2"/>
+    </g>
+    <path class="brick-outline" d="M56 22 76 14 114 44 99 94 79 102 41 72Z"/>
+  `,
+  top: `
+    <path class="brick-face-long" d="M22 44 93 79 93 104 22 69Z"/>
+    <path class="brick-face-short" d="M93 79 138 56 138 81 93 104Z"/>
+    <path class="brick-face-top" d="M67 20 138 56 93 79 22 44Z"/>
+    <g class="brick-studs">
+      <ellipse cx="65" cy="31" rx="7" ry="4.5"/><ellipse cx="83" cy="40" rx="7" ry="4.5"/>
+      <ellipse cx="101" cy="49" rx="7" ry="4.5"/><ellipse cx="119" cy="58" rx="7" ry="4.5"/>
+      <ellipse cx="42" cy="43" rx="7" ry="4.5"/><ellipse cx="60" cy="52" rx="7" ry="4.5"/>
+      <ellipse cx="78" cy="61" rx="7" ry="4.5"/><ellipse cx="96" cy="70" rx="7" ry="4.5"/>
+    </g>
+    <path class="brick-outline" d="M67 20 138 56 138 81 93 104 22 69 22 44Z"/>
+  `,
+  underside: `
+    <path class="brick-face-long" d="M22 44 93 79 93 104 22 69Z"/>
+    <path class="brick-face-short" d="M93 79 138 56 138 81 93 104Z"/>
+    <path class="brick-face-bottom" d="M67 20 138 56 93 79 22 44Z"/>
+    <path class="brick-cavity-far" d="M70 27 129 57 119 62 75 37Z"/>
+    <path class="brick-cavity-left" d="M70 27 36 45 44 50 75 37Z"/>
+    <path class="brick-cavity-right" d="M129 57 93 75 93 69 119 62Z"/>
+    <path class="brick-cavity-near" d="M36 45 93 75 93 69 44 50Z"/>
+    <path class="brick-cavity-floor" d="M75 37 119 62 93 69 44 50Z"/>
+    <g class="brick-hollows">
+      <ellipse cx="61" cy="45" rx="5.3" ry="3.2"/><ellipse cx="76" cy="53" rx="5.3" ry="3.2"/>
+      <ellipse cx="91" cy="60" rx="5.3" ry="3.2"/><ellipse cx="105" cy="62" rx="5.3" ry="3.2"/>
+      <ellipse cx="52" cy="51" rx="5.3" ry="3.2"/><ellipse cx="67" cy="59" rx="5.3" ry="3.2"/>
+      <ellipse cx="82" cy="66" rx="5.3" ry="3.2"/><ellipse cx="96" cy="67" rx="5.3" ry="3.2"/>
+    </g>
+    <path class="brick-outline" d="M67 20 138 56 138 81 93 104 22 69 22 44Z"/>
+  `,
+};
 const params = new URLSearchParams(location.search);
 const sessionId = params.get("session");
 const isStudent = params.get("role") === "student";
@@ -29,25 +84,21 @@ function showSetup() {
   connectionLabel.textContent = "Nicht eingerichtet";
 }
 
-function renderBrick(position, button = false) {
-  const element = document.createElement(button ? "button" : "div");
-  if (button) {
-    element.className = "brick-button";
-    element.type = "button";
-    element.setAttribute("aria-label", positions[position - 1].name);
-  }
-  const brick = document.createElement("span");
-  brick.className = `brick-visual brick-visual--${positions[position - 1].className}`;
-  for (let stud = 0; stud < 8; stud += 1) {
-    brick.append(document.createElement("i"));
-  }
-  element.append(brick);
-  if (button) {
-    const label = document.createElement("span");
-    label.className = "brick-label";
-    label.textContent = positions[position - 1].name;
-    element.append(label);
-  }
+function renderBrick(position) {
+  const element = document.createElement("button");
+  element.className = "brick-button";
+  element.type = "button";
+  element.setAttribute("aria-label", position.name);
+  const illustration = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  illustration.setAttribute("class", `brick-illustration brick-illustration--${position.artwork}`);
+  illustration.setAttribute("viewBox", "0 0 160 120");
+  illustration.setAttribute("aria-hidden", "true");
+  illustration.innerHTML = brickArtwork[position.artwork];
+  element.append(illustration);
+  const label = document.createElement("span");
+  label.className = "brick-label";
+  label.textContent = position.name;
+  element.append(label);
   return element;
 }
 
@@ -232,7 +283,7 @@ async function openSession() {
     document.querySelector("#round-id").textContent = `RUNDE ${sessionId.slice(0, 8).toUpperCase()}`;
     const diceButtons = document.querySelector("#dice-buttons");
     for (let face = 1; face <= positions.length; face += 1) {
-      const button = renderBrick(face, true);
+      const button = renderBrick(positions[face - 1]);
       button.addEventListener("click", async () => {
         button.disabled = true;
         try {

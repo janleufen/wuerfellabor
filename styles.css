@@ -102,15 +102,18 @@ h1 { margin: 14px 0 0; font-size: clamp(42px, 5vw, 72px); line-height: 1.03; let
 .brick-button { min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; padding: 15px 8px; border: 1px solid var(--line); border-radius: 8px; background: #fbfbf7; cursor: pointer; transition: transform .12s, border-color .12s, box-shadow .12s; }
 .brick-button:hover { transform: translateY(-3px); border-color: var(--green); box-shadow: 0 6px 16px #16392b14; }
 .brick-button:active { transform: scale(.96); }
-.brick-visual { width: 88px; height: 48px; display: grid; grid-template: repeat(2, 1fr) / repeat(4, 1fr); align-items: center; justify-items: center; padding: 5px; gap: 3px; border: 2px solid #126b59; border-radius: 7px; background: var(--green); box-shadow: 0 5px 0 #125b4d; }
-.brick-visual i { width: 13px; height: 9px; border: 2px solid #126b59; border-radius: 5px; background: #3a9a82; box-shadow: inset 0 1px 1px #ffffff55; }
-.brick-visual--upright { width: 48px; height: 88px; grid-template: repeat(4, 1fr) / repeat(2, 1fr); }
-.brick-visual--upside-down { transform: rotate(180deg); }
-.brick-visual--upside-down i { background: #126b59; box-shadow: inset 0 0 0 2px #3a9a82; }
-.brick-visual--long-side { width: 88px; height: 26px; grid-template: repeat(1, 1fr) / repeat(4, 1fr); }
-.brick-visual--long-side i { display: none; }
-.brick-visual--short-side { width: 48px; height: 26px; grid-template: repeat(1, 1fr) / repeat(2, 1fr); }
-.brick-visual--short-side i { display: none; }
+.brick-illustration { width: 140px; height: 105px; overflow: visible; filter: drop-shadow(0 5px 3px #19232124); }
+.brick-face-top { fill: #22866f; }
+.brick-face-long { fill: #176d5b; }
+.brick-face-short { fill: #105a4c; }
+.brick-face-bottom { fill: #1a735e; }
+.brick-face-top, .brick-face-bottom, .brick-face-long, .brick-face-short { stroke: #125b4d; stroke-width: 1.5; stroke-linejoin: round; }
+.brick-studs ellipse { fill: #43a98e; stroke: #126b59; stroke-width: 1.5; }
+.brick-cavity-far, .brick-cavity-left, .brick-cavity-right { fill: #176d5b; stroke: #125b4d; stroke-width: 1; }
+.brick-cavity-near { fill: #0e5749; stroke: #125b4d; stroke-width: 1; }
+.brick-cavity-floor { fill: #164b40; stroke: #0c4036; stroke-width: 1; }
+.brick-hollows ellipse { fill: #0b382f; stroke: #4b9d83; stroke-width: 1.5; }
+.brick-outline { fill: none; stroke: #104f43; stroke-width: 2; stroke-linejoin: round; }
 .brick-label { color: #48534e; font-size: 13px; font-weight: 600; }
 .student-feedback { min-height: 24px; color: var(--green); font-size: 14px; }
 .student-total { margin-top: 34px; color: var(--muted); font: 12px "DM Mono", monospace; }
