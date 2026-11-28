@@ -65,16 +65,15 @@ async function loadSessions() {
   sessions.forEach((session) => {
     const item = document.createElement("li");
     item.className = "session-entry";
-    const openButton = document.createElement("button");
-    openButton.className = "session-open";
-    openButton.type = "button";
-    openButton.textContent = session.name || "Unbenannte Runde";
-    openButton.addEventListener("click", () => {
-      location.search = new URLSearchParams({ session: session.id }).toString();
-    });
+    const openLink = document.createElement("a");
+    openLink.className = "session-open";
+    openLink.href = `?${new URLSearchParams({ session: session.id })}`;
+    const name = document.createElement("span");
+    name.textContent = session.name || "Unbenannte Runde";
     const created = document.createElement("span");
     created.className = "session-date";
     created.textContent = session.createdAt ? new Date(session.createdAt).toLocaleString("de-DE") : "";
+    openLink.append(name, created);
     const deleteButton = document.createElement("button");
     deleteButton.className = "session-delete";
     deleteButton.type = "button";
@@ -92,7 +91,7 @@ async function loadSessions() {
         deleteButton.disabled = false;
       }
     });
-    item.append(openButton, created, deleteButton);
+    item.append(openLink, deleteButton);
     sessionList.append(item);
   });
 }
