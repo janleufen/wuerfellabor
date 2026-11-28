@@ -1,5 +1,5 @@
 - [x] Statt über einen 6-Seitigen Würfel soll nun über einen Legostein (2*4) gewürfelt werden. Dadurch werden im Diagram verschiedene Werte angenähert, nicht nur ein sechstel. Die Buttons zum anklicken für die Schüler sollen die jeweilige Position des Logosteines Zeigen: aufrecht, auf dem Kopf, auf der langen seite und auf der kurzen Seite.
-- Auf der Startseite soll es keine anspielung auf die wahrscheinlichkeit geben. Aka: Die 1/6 auf der Startseite muss weg.
+- [x] Auf der Startseite soll es keine anspielung auf die wahrscheinlichkeit geben. Aka: Die 1/6 auf der Startseite muss weg.
 - Der Rote Punkt auf dem Würfel muss weg. (Es soll ein Legostein gezeigt werden)
 - Ich muss vergangende Sessions angezeigt bekommen, außerdem sollen sessions namen bekommen und gelöscht werden können.
 - Die Startseite braucht eine andere URL als die registrierung für die Schüler. Der Grund: beim aufrufen der Seite bekommen die schüler ganz kurz die session startseite angezeigt. nicht das die schüler damit neue sessions starten. Lieber dann erst eine andere seite mit Du wirst angemeldet... oder so anzeigen.
