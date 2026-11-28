@@ -1,6 +1,6 @@
 # Würfel-Labor
 
-Eine kleine Web-App für ein gemeinsames Legostein-Experiment zum Gesetz der großen Zahlen. Die Schüler ordnen jeden Wurf einer von vier Lagen des 2x4-Steins zu. Die Lehreransicht zeigt die relativen Häufigkeiten als vier Live-Linien, ohne eine theoretische Wahrscheinlichkeit einzuzeichnen.
+Eine kleine Web-App für ein gemeinsames Legostein-Experiment zum Gesetz der großen Zahlen. Die Schüler ordnen jeden Wurf einer von vier Lagen des 2x4-Steins zu. Die Lehreransicht zeigt die relativen Häufigkeiten als vier Live-Linien; die Y-Achse ist in Zehnteln beschriftet, ohne eine theoretische Wahrscheinlichkeit einzuzeichnen.
 
 ## Firebase einrichten
 

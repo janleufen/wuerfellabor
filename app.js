@@ -146,7 +146,7 @@ function startChart() {
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: (item) => `${item.dataset.label}: ${item.formattedValue}%` } } },
       scales: {
         x: { title: { display: true, text: "Anzahl der Würfe", color: "#747d76", font: { family: "DM Mono", size: 10 } }, grid: { display: false }, ticks: { maxTicksLimit: 8, color: "#747d76" } },
-        y: { min: 0, max: 100, title: { display: true, text: "Anteil (%)", color: "#747d76", font: { family: "DM Mono", size: 10 } }, grid: { color: "#e7e9e2" }, ticks: { color: "#747d76", callback: (value) => `${value}%` } },
+        y: { min: 0, max: 100, title: { display: true, text: "Wahrscheinlichkeit", color: "#747d76", font: { family: "DM Mono", size: 10 } }, grid: { color: "#e7e9e2" }, ticks: { stepSize: 10, color: "#747d76", callback: (value) => `${Math.round(Number(value) / 10)}/10` } },
       },
     },
   });
