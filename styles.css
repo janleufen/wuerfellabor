@@ -112,7 +112,10 @@ h1 { margin: 14px 0 0; font-size: clamp(42px, 5vw, 72px); line-height: 1.03; let
 .brick-cavity-far, .brick-cavity-left, .brick-cavity-right { fill: #176d5b; stroke: #125b4d; stroke-width: 1; }
 .brick-cavity-near { fill: #0e5749; stroke: #125b4d; stroke-width: 1; }
 .brick-cavity-floor { fill: #164b40; stroke: #0c4036; stroke-width: 1; }
-.brick-hollows ellipse { fill: #0b382f; stroke: #4b9d83; stroke-width: 1.5; }
+.brick-tube-wall { fill: #236d59; stroke: #145847; stroke-width: 1; }
+.brick-tube-bottom { fill: #174b3f; stroke: #236d59; stroke-width: 1; }
+.brick-tube-opening { fill: #39876e; stroke: #79b29d; stroke-width: 1.5; }
+.brick-tube-hole { fill: #0b3028; stroke: #16483d; stroke-width: 1; }
 .brick-outline { fill: none; stroke: #104f43; stroke-width: 2; stroke-linejoin: round; }
 .brick-label { color: #48534e; font-size: 13px; font-weight: 600; }
 .student-feedback { min-height: 24px; color: var(--green); font-size: 14px; }
