@@ -5,7 +5,7 @@ import { firebaseConfig } from "./firebase-config.js";
 import Chart from "https://cdn.jsdelivr.net/npm/chart.js@4.4.3/auto/+esm";
 import { positions, createBrickIllustration } from "./brick-artwork.js";
 
-const colors = ["#197c68", "#e8bd43", "#477d9a", "#c95c87"];
+const colors = ["#00a651", "#ff6d00", "#0066ff", "#d600a9"];
 const params = new URLSearchParams(location.search);
 const sessionId = params.get("session");
 const isStudent = params.get("role") === "student";
@@ -119,10 +119,11 @@ function startChart() {
         data: [],
         borderColor: colors[index],
         backgroundColor: colors[index],
-        borderWidth: 1,
+        borderWidth: 2,
+        clip: false,
         pointStyle: "circle",
-        pointRadius: 3,
-        pointHoverRadius: 5,
+        pointRadius: 4,
+        pointHoverRadius: 6,
         pointHitRadius: 8,
         tension: 0,
       })),
