@@ -4,9 +4,12 @@ import { getDatabase, ref, set, push, onChildAdded } from "https://www.gstatic.c
 import { firebaseConfig } from "./firebase-config.js";
 import Chart from "https://cdn.jsdelivr.net/npm/chart.js@4.4.3/auto/+esm";
 
-const colors = ["#197c68", "#e2604d", "#e8bd43", "#477d9a", "#c95c87", "#84a83d"];
-const faces = [
-  [5], [1, 9], [1, 5, 9], [1, 3, 7, 9], [1, 3, 5, 7, 9], [1, 3, 4, 6, 7, 9],
+const colors = ["#197c68", "#e8bd43", "#477d9a", "#c95c87"];
+const positions = [
+  { name: "Aufrecht", className: "upright" },
+  { name: "Auf dem Kopf", className: "upside-down" },
+  { name: "Auf der langen Seite", className: "long-side" },
+  { name: "Auf der kurzen Seite", className: "short-side" },
 ];
 const params = new URLSearchParams(location.search);
 const sessionId = params.get("session");
@@ -22,22 +25,25 @@ function showSetup() {
   connectionLabel.textContent = "Nicht eingerichtet";
 }
 
-function renderDie(number, button = false) {
+function renderBrick(position, button = false) {
   const element = document.createElement(button ? "button" : "div");
   if (button) {
-    element.className = "die-button";
+    element.className = "brick-button";
     element.type = "button";
-    element.setAttribute("aria-label", `Augenzahl ${number}`);
+    element.setAttribute("aria-label", positions[position - 1].name);
   }
-  const die = document.createElement("span");
-  die.className = "die-face";
-  for (let dot = 1; dot <= 9; dot += 1) {
-    const pip = document.createElement("i");
-    if (faces[number - 1].includes(dot)) pip.style.gridArea = `${Math.ceil(dot / 3)} / ${((dot - 1) % 3) + 1}`;
-    else pip.style.visibility = "hidden";
-    die.append(pip);
+  const brick = document.createElement("span");
+  brick.className = `brick-visual brick-visual--${positions[position - 1].className}`;
+  for (let stud = 0; stud < 8; stud += 1) {
+    brick.append(document.createElement("i"));
   }
-  element.append(die);
+  element.append(brick);
+  if (button) {
+    const label = document.createElement("span");
+    label.className = "brick-label";
+    label.textContent = positions[position - 1].name;
+    element.append(label);
+  }
   return element;
 }
 
@@ -64,14 +70,14 @@ function startChart() {
   const context = document.querySelector("#frequency-chart");
   const legend = document.querySelector("#legend");
   const countContainer = document.querySelector("#face-counts");
-  const counts = Array(6).fill(0);
+  const counts = Array(positions.length).fill(0);
   let total = 0;
   const chart = new Chart(context, {
     type: "line",
     data: {
       labels: [],
       datasets: counts.map((_, index) => ({
-        label: `Zahl ${index + 1}`,
+        label: positions[index].name,
         data: [],
         borderColor: colors[index],
         backgroundColor: colors[index],
@@ -96,17 +102,17 @@ function startChart() {
   counts.forEach((_, index) => {
     const item = document.createElement("span");
     item.className = "legend-item";
-    item.innerHTML = `<span class="legend-dot" style="background:${colors[index]}"></span>Augenzahl ${index + 1}`;
+    item.innerHTML = `<span class="legend-dot" style="background:${colors[index]}"></span>${positions[index].name}`;
     legend.append(item);
     const cell = document.createElement("div");
     cell.className = "count-cell";
-    cell.innerHTML = `<span class="legend-dot" style="background:${colors[index]}"></span><span id="count-${index + 1}">0</span>`;
+    cell.innerHTML = `<span class="legend-dot" style="background:${colors[index]}"></span><span>${positions[index].name}: <strong id="count-${index + 1}">0</strong></span>`;
     countContainer.append(cell);
   });
   onChildAdded(ref(database, `sessions/${sessionId}/rolls`), (snapshot) => {
     const roll = snapshot.val();
     const face = Number(roll.face);
-    if (face < 1 || face > 6) return;
+    if (!Number.isInteger(face) || face < 1 || face > positions.length) return;
     counts[face - 1] += 1;
     total += 1;
     chart.data.labels.push(total);
@@ -147,13 +153,13 @@ async function openSession() {
     setView("student");
     document.querySelector("#round-id").textContent = `RUNDE ${sessionId.slice(0, 8).toUpperCase()}`;
     const diceButtons = document.querySelector("#dice-buttons");
-    for (let face = 1; face <= 6; face += 1) {
-      const button = renderDie(face, true);
+    for (let face = 1; face <= positions.length; face += 1) {
+      const button = renderBrick(face, true);
       button.addEventListener("click", async () => {
         button.disabled = true;
         try {
           await set(push(ref(database, `sessions/${sessionId}/rolls`)), { face, by: uid, at: Date.now() });
-          document.querySelector("#student-feedback").textContent = `Zahl ${face} wurde gezählt.`;
+          document.querySelector("#student-feedback").textContent = `${positions[face - 1].name} wurde gezählt.`;
         } catch (error) {
           document.querySelector("#student-feedback").textContent = "Der Wurf konnte nicht gespeichert werden. Prüfe die Verbindung.";
           console.error(error);

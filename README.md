@@ -1,6 +1,6 @@
 # Würfel-Labor
 
-Eine kleine Web-App für ein gemeinsames Würfel-Experiment zum Gesetz der großen Zahlen. Die Lehreransicht zeigt die relativen Häufigkeiten als sechs Live-Linien. Es gibt bewusst keine eingezeichnete theoretische Wahrscheinlichkeit.
+Eine kleine Web-App für ein gemeinsames Legostein-Experiment zum Gesetz der großen Zahlen. Die Schüler ordnen jeden Wurf einer von vier Lagen des 2x4-Steins zu. Die Lehreransicht zeigt die relativen Häufigkeiten als vier Live-Linien, ohne eine theoretische Wahrscheinlichkeit einzuzeichnen.
 
 ## Firebase einrichten
 
@@ -11,7 +11,7 @@ Eine kleine Web-App für ein gemeinsames Würfel-Experiment zum Gesetz der groß
 5. Übertrage `database.rules.json` in **Realtime Database > Rules** und veröffentliche die Regeln.
 6. Trage deine GitHub-Pages-Adresse in den Firebase Authentication-Einstellungen unter **Authorized domains** ein.
 
-Die Firebase-Web-Konfiguration ist im Browser sichtbar und kein Passwort. Die Datenbankregeln sind deshalb wichtig: Nur angemeldete Geräte können lesen; Würfe dürfen nur als Augenzahlen von 1 bis 6 ergänzt werden.
+Die Firebase-Web-Konfiguration ist im Browser sichtbar und kein Passwort. Die Datenbankregeln sind deshalb wichtig: Nur angemeldete Geräte können lesen; Würfe dürfen nur als eine der vier Steinlagen ergänzt werden.
 
 ## Lokal testen
 
@@ -29,6 +29,6 @@ Lade die Dateien in ein GitHub-Repository und aktiviere unter **Settings > Pages
 
 ## Verwendung
 
-Die Lehrkraft startet eine Runde und projiziert die angezeigte QR-Code-Teilnahme. Schüler tippen nach jedem Wurf auf die passende Würfelseite. Die Lehreransicht aktualisiert Diagramm und Zähler live. Für eine neue Runde wird eine neue Sitzungs-URL erstellt.
+Die Lehrkraft startet eine Runde und projiziert die angezeigte QR-Code-Teilnahme. Schüler tippen nach jedem Wurf auf die passende Lage des Legosteins. Die Lehreransicht aktualisiert Diagramm und Zähler live. Für eine neue Runde wird eine neue Sitzungs-URL erstellt.
 
 Es werden keine Namen abgefragt. Anonyme Firebase-IDs und Würfe bleiben gespeichert, bis sie in der Firebase Console gelöscht werden. Vor dem Einsatz sollten die schulischen Datenschutzvorgaben geprüft werden.

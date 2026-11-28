@@ -82,12 +82,19 @@ h1 { margin: 14px 0 0; font-size: clamp(42px, 5vw, 72px); line-height: 1.03; let
 .student-view { width: min(720px, 100%); flex: 1; align-self: center; padding: 60px 0 40px; text-align: center; }
 .student-heading h1 { font-size: clamp(34px, 5vw, 52px); }
 .student-heading > p:last-child { margin: 12px 0 0; color: var(--muted); font-size: 16px; }
-.dice-buttons { display: grid; grid-template-columns: repeat(3, minmax(82px, 1fr)); gap: 14px; max-width: 500px; margin: 36px auto 20px; }
-.die-button { aspect-ratio: 1; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 8px; background: #fbfbf7; cursor: pointer; transition: transform .12s, border-color .12s, box-shadow .12s; }
-.die-button:hover { transform: translateY(-3px); border-color: var(--green); box-shadow: 0 6px 16px #16392b14; }
-.die-button:active { transform: scale(.96); }
-.die-face { width: 72%; aspect-ratio: 1; display: grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr); padding: 8%; gap: 2px; }
-.die-face i { width: clamp(8px, 2vw, 13px); height: clamp(8px, 2vw, 13px); }
+.dice-buttons { display: grid; grid-template-columns: repeat(4, minmax(82px, 1fr)); gap: 14px; max-width: 720px; margin: 36px auto 20px; }
+.brick-button { min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; padding: 15px 8px; border: 1px solid var(--line); border-radius: 8px; background: #fbfbf7; cursor: pointer; transition: transform .12s, border-color .12s, box-shadow .12s; }
+.brick-button:hover { transform: translateY(-3px); border-color: var(--green); box-shadow: 0 6px 16px #16392b14; }
+.brick-button:active { transform: scale(.96); }
+.brick-visual { width: 88px; height: 48px; display: grid; grid-template: repeat(2, 1fr) / repeat(4, 1fr); align-items: center; justify-items: center; padding: 5px; gap: 3px; border: 2px solid #126b59; border-radius: 7px; background: var(--green); box-shadow: 0 5px 0 #125b4d; }
+.brick-visual i { width: 13px; height: 9px; border: 2px solid #126b59; border-radius: 5px; background: #3a9a82; box-shadow: inset 0 1px 1px #ffffff55; }
+.brick-visual--upright { width: 48px; height: 88px; grid-template: repeat(4, 1fr) / repeat(2, 1fr); }
+.brick-visual--upside-down { transform: rotate(180deg); }
+.brick-visual--long-side { width: 88px; height: 26px; grid-template: repeat(1, 1fr) / repeat(4, 1fr); }
+.brick-visual--long-side i { display: none; }
+.brick-visual--short-side { width: 48px; height: 26px; grid-template: repeat(1, 1fr) / repeat(2, 1fr); }
+.brick-visual--short-side i { display: none; }
+.brick-label { color: #48534e; font-size: 13px; font-weight: 600; }
 .student-feedback { min-height: 24px; color: var(--green); font-size: 14px; }
 .student-total { margin-top: 34px; color: var(--muted); font: 12px "DM Mono", monospace; }
 .student-total strong { color: var(--ink); font-size: 18px; }
@@ -116,6 +123,6 @@ h1 { margin: 14px 0 0; font-size: clamp(42px, 5vw, 72px); line-height: 1.03; let
   .counts-panel { display: flex; flex-direction: column; justify-content: center; }
   .teacher-prompt { font-size: 14px; }
   .student-view { padding-top: 46px; }
-  .dice-buttons { gap: 9px; margin-top: 30px; }
+  .dice-buttons { grid-template-columns: repeat(2, minmax(110px, 1fr)); gap: 9px; margin-top: 30px; }
   .footer { font-size: 9px; }
 }

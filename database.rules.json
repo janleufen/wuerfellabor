@@ -8,7 +8,7 @@
         ".write": "auth != null && ((!data.exists() && newData.child('ownerUid').val() === auth.uid) || data.child('ownerUid').val() === auth.uid)",
         "rolls": {
           "$rollId": {
-            ".write": "auth != null && !data.exists() && root.child('sessions').child($sessionId).child('active').val() === true && newData.child('by').val() === auth.uid && newData.child('face').isNumber() && newData.child('face').val() >= 1 && newData.child('face').val() <= 6",
+            ".write": "auth != null && !data.exists() && root.child('sessions').child($sessionId).child('active').val() === true && newData.child('by').val() === auth.uid && newData.child('face').isNumber() && newData.child('face').val() >= 1 && newData.child('face').val() <= 4",
             ".validate": "newData.hasChildren(['face', 'by', 'at'])"
           }
         }
