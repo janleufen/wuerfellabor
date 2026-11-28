@@ -36,7 +36,7 @@
       <section id="welcome-view" class="welcome-view">
         <div class="welcome-copy">
           <p class="eyebrow">MATHEMATIK · EXPERIMENT</p>
-          <h1>Was passiert,<br />wenn der Legostein <em>oft</em> fällt?</h1>
+          <h1>Was passiert,<br />wenn der Klemmbaustein <em>oft</em> fällt?</h1>
           <p class="intro">Sammelt gemeinsam Würfe und beobachtet, wie sich die Ergebnisse entwickeln.</p>
           <label class="session-name-label" for="session-name">Name des Experiments</label>
           <input id="session-name" class="session-name-input" type="text" maxlength="60" placeholder="z. B. Klasse 5a" autocomplete="off" />
@@ -69,13 +69,13 @@
           </section>
           <aside class="side-panel">
             <div class="join-panel"><p class="panel-kicker">MITMACHEN</p><p class="join-copy">Scanne den Code oder öffne den Teilnahmelink auf jedem Tablet.</p><div id="qr-code" class="qr-code"></div><button id="copy-link" class="copy-button" type="button">Link kopieren <span aria-hidden="true">↗</span></button><p class="session-code">RUNDE <span id="session-short-code">—</span></p></div>
-            <div class="counts-panel"><p class="panel-kicker">BISHERIGE WÜRFE</p><div id="face-counts" class="face-counts"></div></div>
+            <div class="counts-panel"><p class="panel-kicker">BISHERIGE WÜRFE</p><ul id="face-counts" class="face-counts" aria-label="Würfe je Klemmbausteinlage"></ul></div>
           </aside>
         </div>
       </section>
 
       <section id="student-view" class="student-view" hidden>
-        <div class="student-heading"><p class="eyebrow">GEMEINSAMES LEGOSTEIN-EXPERIMENT</p><h1>Wie ist der Legostein gelandet?</h1><p>Tippe auf die passende Lage.</p></div>
+        <div class="student-heading"><p class="eyebrow">GEMEINSAMES KLEMMBAUSTEIN-EXPERIMENT</p><h1>Wie ist der Klemmbaustein gelandet?</h1><p>Tippe auf die passende Lage.</p></div>
         <div id="dice-buttons" class="dice-buttons"></div>
         <div id="student-feedback" class="student-feedback" aria-live="polite">Würfle einmal und tippe dann hier.</div>
         <p class="student-total"><strong id="student-total-rolls">0</strong> Würfe in dieser Runde</p>

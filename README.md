@@ -1,6 +1,6 @@
 # Würfel-Labor
 
-Eine kleine Web-App für ein gemeinsames Legostein-Experiment zum Gesetz der großen Zahlen. Die Schüler ordnen jeden Wurf einer von vier Lagen des 2x4-Steins zu. Die Lehreransicht zeigt für jeden Wurf einen Messpunkt und verbindet die Punkte durch dünne, gerade Liniensegmente; die Y-Achse ist in Zehnteln beschriftet, ohne eine theoretische Wahrscheinlichkeit einzuzeichnen.
+Eine kleine Web-App für ein gemeinsames Klemmbaustein-Experiment zum Gesetz der großen Zahlen. Die Schüler ordnen jeden Wurf einer von vier Lagen des 2x4-Klemmbausteins zu. Die Lehreransicht zeigt für jeden Wurf einen Messpunkt und verbindet die Punkte durch dünne, gerade Liniensegmente; die Y-Achse ist in Zehnteln beschriftet, ohne eine theoretische Wahrscheinlichkeit einzuzeichnen.
 
 ## Firebase einrichten
 
@@ -23,7 +23,7 @@ py -m http.server 8000
 
 Öffne danach `http://localhost:8000`. Die Anwendung benötigt für die Synchronisierung eine Internetverbindung und die eingerichtete Firebase-Konfiguration.
 
-Die Auswahlbilder der Legosteine kannst du ohne Firebase lokal unter `http://localhost:8000/brick-preview.html` ansehen.
+Die Auswahlbilder der Klemmbausteine kannst du ohne Firebase lokal unter `http://localhost:8000/brick-preview.html` ansehen.
 
 ## Auf GitHub Pages veröffentlichen
 
@@ -31,6 +31,6 @@ Lade die Dateien in ein GitHub-Repository und aktiviere unter **Settings > Pages
 
 ## Verwendung
 
-Die Lehrkraft benennt und startet eine Runde und projiziert die angezeigte QR-Code-Teilnahme. Der Teilnahme-Link öffnet direkt die Schüleransicht mit einer Anmeldeanzeige; die Startseite zum Erstellen von Runden wird dort nicht eingeblendet. Gespeicherte Runden erscheinen auf der Startseite und können dort geöffnet oder gelöscht werden. Schüler tippen nach jedem Wurf auf die passende Lage des Legosteins. Die Lehreransicht aktualisiert Diagramm und Zähler live.
+Die Lehrkraft benennt und startet eine Runde und projiziert die angezeigte QR-Code-Teilnahme. Der Teilnahme-Link öffnet direkt die Schüleransicht mit einer Anmeldeanzeige; die Startseite zum Erstellen von Runden wird dort nicht eingeblendet. Gespeicherte Runden erscheinen auf der Startseite und können dort geöffnet oder gelöscht werden. Schüler tippen nach jedem Wurf auf die passende Lage des Klemmbausteins. Die Lehreransicht aktualisiert Diagramm und Zähler live.
 
 Es werden keine Schülernamen abgefragt. Die anonyme Anmeldung wird im Browser dauerhaft gespeichert; Firebase erneuert die Sitzungstokens automatisch und verbindet die Realtime Database nach einem Verbindungsabbruch erneut. Anonyme Firebase-IDs und Würfe bleiben gespeichert, bis sie in der Firebase Console gelöscht werden. Vor dem Einsatz sollten die schulischen Datenschutzvorgaben geprüft werden.

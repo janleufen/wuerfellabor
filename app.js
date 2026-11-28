@@ -168,7 +168,7 @@ function startChart() {
     item.className = "legend-item";
     item.innerHTML = `<span class="legend-dot" style="background:${colors[index]}"></span>${positions[index].name}`;
     legend.append(item);
-    const cell = document.createElement("div");
+    const cell = document.createElement("li");
     cell.className = "count-cell";
     cell.innerHTML = `<span class="legend-dot" style="background:${colors[index]}"></span><span>${positions[index].name}: <strong id="count-${index + 1}">0</strong></span>`;
     countContainer.append(cell);
