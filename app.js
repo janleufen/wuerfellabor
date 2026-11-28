@@ -22,6 +22,9 @@ function showSetup() {
   document.querySelector("#setup-note").hidden = false;
   document.querySelector("#create-session").disabled = true;
   document.querySelector("#session-name").disabled = true;
+  if (sessionId && isStudent) {
+    document.querySelector("#student-loading-status").textContent = "Die Teilnahme ist noch nicht eingerichtet.";
+  }
   connection.classList.add("offline");
   connectionLabel.textContent = "Nicht eingerichtet";
 }
@@ -49,6 +52,7 @@ function renderBrick(position, button = false) {
 }
 
 function setView(view) {
+  document.querySelector("#student-loading-view").hidden = view !== "loading";
   document.querySelector("#welcome-view").hidden = view !== "welcome";
   document.querySelector("#teacher-view").hidden = view !== "teacher";
   document.querySelector("#student-view").hidden = view !== "student";
@@ -174,6 +178,7 @@ let database;
 let uid;
 
 async function initialize() {
+  if (sessionId && isStudent) setView("loading");
   if (!connected) {
     showSetup();
     return;
@@ -191,6 +196,9 @@ async function initialize() {
   } catch (error) {
     connection.classList.add("offline");
     connectionLabel.textContent = "Verbindung fehlgeschlagen";
+    if (sessionId && isStudent) {
+      document.querySelector("#student-loading-status").textContent = "Anmeldung fehlgeschlagen. Prüfe die Verbindung und lade die Seite erneut.";
+    }
     console.error(error);
   }
 }
