@@ -26,7 +26,10 @@
           <p class="eyebrow">MATHEMATIK · EXPERIMENT</p>
           <h1>Was passiert,<br />wenn wir <em>oft</em> würfeln?</h1>
           <p class="intro">Sammelt gemeinsam Würfe und beobachtet, wie sich die Ergebnisse entwickeln.</p>
+          <label class="session-name-label" for="session-name">Name des Experiments</label>
+          <input id="session-name" class="session-name-input" type="text" maxlength="60" placeholder="z. B. Klasse 5a" autocomplete="off" />
           <button id="create-session" class="primary-button" type="button">Experiment starten <span aria-hidden="true">↗</span></button>
+          <p id="session-feedback" class="session-feedback" aria-live="polite"></p>
           <p id="setup-note" class="setup-note" hidden>Firebase ist noch nicht eingerichtet. Die Verbindungseinstellungen stehen in <code>firebase-config.js</code>.</p>
         </div>
         <div class="welcome-art" aria-hidden="true">
@@ -34,18 +37,23 @@
           <div class="hero-brick"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <span class="art-label label-two">ROLL THE BRICK</span>
         </div>
+        <section class="session-history" aria-labelledby="session-history-heading">
+          <h2 id="session-history-heading">Vergangene Experimente</h2>
+          <p id="no-sessions" class="no-sessions">Bisher gibt es keine gespeicherten Experimente.</p>
+          <ul id="session-list" class="session-list"></ul>
+        </section>
       </section>
 
       <section id="teacher-view" class="teacher-view" hidden>
         <div class="session-heading">
-          <div><p class="eyebrow">LIVE-EXPERIMENT</p><h1>Die Würfel-Ergebnisse</h1></div>
+          <div><p class="eyebrow">LIVE-EXPERIMENT</p><h1 id="session-title">Die Ergebnisse</h1></div>
           <div class="session-actions"><button id="share-session" class="icon-button" type="button" title="Teilnahmelink kopieren" aria-label="Teilnahmelink kopieren">↗</button><button id="new-session" class="quiet-button" type="button">Neue Runde</button></div>
         </div>
         <div class="teacher-grid">
           <section class="chart-panel" aria-label="Verlauf der relativen Häufigkeiten">
             <div class="panel-heading"><div><span class="panel-kicker">RELATIVE HÄUFIGKEIT</span><p class="panel-subtitle">Anteil je Augenzahl im Verlauf</p></div><div class="total-block"><strong id="total-rolls">0</strong><span>WÜRFE</span></div></div>
-            <div class="chart-wrap"><canvas id="frequency-chart" aria-label="Liniendiagramm der sechs relativen Häufigkeiten"></canvas></div>
-            <div id="legend" class="legend" aria-label="Augenzahlen"></div>
+            <div class="chart-wrap"><canvas id="frequency-chart" aria-label="Liniendiagramm der vier relativen Häufigkeiten"></canvas></div>
+            <div id="legend" class="legend" aria-label="Steinlagen"></div>
           </section>
           <aside class="side-panel">
             <div class="join-panel"><p class="panel-kicker">MITMACHEN</p><p class="join-copy">Scanne den Code oder öffne den Teilnahmelink auf jedem Tablet.</p><div id="qr-code" class="qr-code"></div><button id="copy-link" class="copy-button" type="button">Link kopieren <span aria-hidden="true">↗</span></button><p class="session-code">RUNDE <span id="session-short-code">—</span></p></div>

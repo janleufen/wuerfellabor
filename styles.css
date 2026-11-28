@@ -37,6 +37,19 @@ h1 { margin: 14px 0 0; font-size: clamp(42px, 5vw, 72px); line-height: 1.03; let
 .primary-button:hover { background: #116653; transform: translateY(-2px); }
 .setup-note { max-width: 420px; margin-top: 20px; color: #925b22; font-size: 13px; line-height: 1.5; }
 .setup-note code { font: 12px "DM Mono", monospace; }
+.session-name-label { display: block; margin: 0 0 7px; color: #59645f; font-size: 13px; font-weight: 600; }
+.session-name-input { width: min(100%, 360px); min-height: 46px; margin-bottom: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 3px; background: #fbfbf7; color: var(--ink); font: inherit; }
+.session-name-input:focus { outline: 2px solid #197c6844; border-color: var(--green); }
+.session-feedback { min-height: 20px; margin: 8px 0 0; color: var(--coral); font-size: 13px; }
+.session-history { width: 100%; grid-column: 1 / -1; align-self: center; }
+.session-history h2 { margin: 0 0 14px; font-size: 20px; font-weight: 600; }
+.no-sessions { color: var(--muted); font-size: 14px; }
+.session-list { display: grid; gap: 8px; max-height: 55vh; margin: 0; padding: 0; overflow-y: auto; list-style: none; }
+.session-entry { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 3px; background: #fbfbf7; }
+.session-open { grid-column: 1; padding: 0; border: 0; background: transparent; color: var(--green); text-align: left; font: inherit; font-weight: 600; cursor: pointer; }
+.session-date { grid-column: 1; color: var(--muted); font: 10px "DM Mono", monospace; }
+.session-delete { grid-column: 2; grid-row: 1 / span 2; padding: 7px 10px; border: 1px solid var(--line); border-radius: 3px; background: transparent; color: #a74439; cursor: pointer; }
+.session-delete:hover { background: #fff4f1; }
 .welcome-art { min-height: 390px; position: relative; display: grid; place-items: center; overflow: hidden; background: #e6e9df; border-radius: 3px; }
 .orbit { position: absolute; width: min(76%, 360px); aspect-ratio: 1; border: 1px solid #c8d1c5; border-radius: 50%; }
 .orbit-two { width: min(96%, 460px); border-style: dashed; transform: rotate(27deg) scaleY(.55); }
@@ -103,6 +116,7 @@ h1 { margin: 14px 0 0; font-size: clamp(42px, 5vw, 72px); line-height: 1.03; let
 @media (max-width: 850px) {
   .app-shell { width: calc(100% - 36px); }
   .welcome-view { grid-template-columns: 1fr; gap: 26px; padding: 44px 2vw; }
+  .session-history { width: 100%; }
   .welcome-art { min-height: 270px; }
   .teacher-grid { grid-template-columns: minmax(0, 1fr) 250px; gap: 12px; }
   .chart-panel { padding: 18px 16px 12px; }

@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getDatabase, ref, set, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, set, push, get, remove, query, orderByChild, equalTo, onChildAdded } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import { firebaseConfig } from "./firebase-config.js";
 import Chart from "https://cdn.jsdelivr.net/npm/chart.js@4.4.3/auto/+esm";
 
@@ -21,6 +21,7 @@ const connectionLabel = document.querySelector("#connection-label");
 function showSetup() {
   document.querySelector("#setup-note").hidden = false;
   document.querySelector("#create-session").disabled = true;
+  document.querySelector("#session-name").disabled = true;
   connection.classList.add("offline");
   connectionLabel.textContent = "Nicht eingerichtet";
 }
@@ -57,6 +58,52 @@ function sessionUrl(role = "student") {
   const url = new URL(location.href);
   url.search = new URLSearchParams({ session: sessionId, role }).toString();
   return url.href;
+}
+
+async function loadSessions() {
+  const sessionList = document.querySelector("#session-list");
+  const emptyMessage = document.querySelector("#no-sessions");
+  sessionList.replaceChildren();
+  const snapshot = await get(query(ref(database, "sessions"), orderByChild("ownerUid"), equalTo(uid)));
+  const sessions = [];
+  snapshot.forEach((sessionSnapshot) => {
+    sessions.push({ id: sessionSnapshot.key, ...sessionSnapshot.val() });
+  });
+  sessions.sort((left, right) => (right.createdAt || 0) - (left.createdAt || 0));
+  emptyMessage.hidden = sessions.length > 0;
+  sessions.forEach((session) => {
+    const item = document.createElement("li");
+    item.className = "session-entry";
+    const openButton = document.createElement("button");
+    openButton.className = "session-open";
+    openButton.type = "button";
+    openButton.textContent = session.name || "Unbenannte Runde";
+    openButton.addEventListener("click", () => {
+      location.search = new URLSearchParams({ session: session.id }).toString();
+    });
+    const created = document.createElement("span");
+    created.className = "session-date";
+    created.textContent = session.createdAt ? new Date(session.createdAt).toLocaleString("de-DE") : "";
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "session-delete";
+    deleteButton.type = "button";
+    deleteButton.textContent = "Löschen";
+    deleteButton.setAttribute("aria-label", `${session.name || "Unbenannte Runde"} löschen`);
+    deleteButton.addEventListener("click", async () => {
+      if (!window.confirm(`Runde „${session.name || "Unbenannte Runde"}“ und alle Würfe löschen?`)) return;
+      deleteButton.disabled = true;
+      try {
+        await remove(ref(database, `sessions/${session.id}`));
+        await loadSessions();
+      } catch (error) {
+        document.querySelector("#session-feedback").textContent = "Die Runde konnte nicht gelöscht werden. Prüfe die Verbindung.";
+        console.error(error);
+        deleteButton.disabled = false;
+      }
+    });
+    item.append(openButton, created, deleteButton);
+    sessionList.append(item);
+  });
 }
 
 async function copyJoinLink() {
@@ -140,6 +187,7 @@ async function initialize() {
     connection.classList.add("online");
     connectionLabel.textContent = "Verbunden";
     if (sessionId) await openSession();
+    else await loadSessions();
   } catch (error) {
     connection.classList.add("offline");
     connectionLabel.textContent = "Verbindung fehlgeschlagen";
@@ -175,6 +223,9 @@ async function openSession() {
     });
   } else {
     setView("teacher");
+    const sessionSnapshot = await get(sessionRef);
+    const sessionName = sessionSnapshot.val()?.name || `Runde ${sessionId.slice(0, 8).toUpperCase()}`;
+    document.querySelector("#session-title").textContent = sessionName;
     document.querySelector("#round-id").textContent = `RUNDE ${sessionId.slice(0, 8).toUpperCase()}`;
     document.querySelector("#session-short-code").textContent = sessionId.slice(0, 8).toUpperCase();
     new QRCode(document.querySelector("#qr-code"), { text: sessionUrl(), width: 100, height: 100, correctLevel: QRCode.CorrectLevel.M });
@@ -187,9 +238,24 @@ async function openSession() {
 
 document.querySelector("#create-session").addEventListener("click", async () => {
   if (!database || !uid) return;
-  const newSession = push(ref(database, "sessions"));
-  await set(newSession, { ownerUid: uid, active: true, createdAt: Date.now() });
-  location.search = new URLSearchParams({ session: newSession.key }).toString();
+  const nameInput = document.querySelector("#session-name");
+  const name = nameInput.value.trim();
+  if (!name) {
+    nameInput.focus();
+    document.querySelector("#session-feedback").textContent = "Gib der Runde zuerst einen Namen.";
+    return;
+  }
+  const button = document.querySelector("#create-session");
+  button.disabled = true;
+  try {
+    const newSession = push(ref(database, "sessions"));
+    await set(newSession, { ownerUid: uid, active: true, name, createdAt: Date.now() });
+    location.search = new URLSearchParams({ session: newSession.key }).toString();
+  } catch (error) {
+    document.querySelector("#session-feedback").textContent = "Die Runde konnte nicht erstellt werden. Prüfe die Verbindung.";
+    console.error(error);
+    button.disabled = false;
+  }
 });
 
 initialize();

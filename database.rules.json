@@ -3,6 +3,7 @@
     ".read": false,
     ".write": false,
     "sessions": {
+      ".read": "auth != null && query.orderByChild === 'ownerUid' && query.equalTo === auth.uid",
       "$sessionId": {
         ".read": "auth != null",
         ".write": "auth != null && ((!data.exists() && newData.child('ownerUid').val() === auth.uid) || data.child('ownerUid').val() === auth.uid)",

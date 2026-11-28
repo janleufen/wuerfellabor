@@ -29,6 +29,6 @@ Lade die Dateien in ein GitHub-Repository und aktiviere unter **Settings > Pages
 
 ## Verwendung
 
-Die Lehrkraft startet eine Runde und projiziert die angezeigte QR-Code-Teilnahme. Schüler tippen nach jedem Wurf auf die passende Lage des Legosteins. Die Lehreransicht aktualisiert Diagramm und Zähler live. Für eine neue Runde wird eine neue Sitzungs-URL erstellt.
+Die Lehrkraft benennt und startet eine Runde und projiziert die angezeigte QR-Code-Teilnahme. Gespeicherte Runden erscheinen auf der Startseite und können dort geöffnet oder gelöscht werden. Schüler tippen nach jedem Wurf auf die passende Lage des Legosteins. Die Lehreransicht aktualisiert Diagramm und Zähler live.
 
 Es werden keine Namen abgefragt. Anonyme Firebase-IDs und Würfe bleiben gespeichert, bis sie in der Firebase Console gelöscht werden. Vor dem Einsatz sollten die schulischen Datenschutzvorgaben geprüft werden.
