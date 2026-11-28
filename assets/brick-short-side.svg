@@ -1,20 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120">
-  <style>
-    .brick-face-top { fill: #22866f; }
+<svg width="160" height="120" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <style>.brick-face-top { fill: #22866f; }
     .brick-face-long { fill: #176d5b; }
     .brick-face-short { fill: #105a4c; }
+    .brick-face-bottom { fill: #1a735e; }
     .brick-face-top, .brick-face-bottom, .brick-face-long, .brick-face-short { stroke: #125b4d; stroke-width: 1.5; stroke-linejoin: round; }
     .brick-studs ellipse { fill: #43a98e; stroke: #126b59; stroke-width: 1.5; }
-    .brick-outline { fill: none; stroke: #104f43; stroke-width: 2; stroke-linejoin: round; }
-  </style>
-  <path class="brick-face-long" d="M94 52 79 102 111 87 126 37Z"/>
-  <path class="brick-face-short" d="M56 22 88 7 126 37 94 52Z"/>
-  <path class="brick-face-top" d="M56 22 94 52 79 102 41 72Z"/>
-  <g class="brick-studs">
-    <ellipse cx="57" cy="38" rx="5.6" ry="4.2"/><ellipse cx="66.5" cy="45.5" rx="5.6" ry="4.2"/>
-    <ellipse cx="76" cy="53" rx="5.6" ry="4.2"/><ellipse cx="85.5" cy="60.5" rx="5.6" ry="4.2"/>
-    <ellipse cx="49.5" cy="63" rx="5.6" ry="4.2"/><ellipse cx="59" cy="70.5" rx="5.6" ry="4.2"/>
-    <ellipse cx="68.5" cy="78" rx="5.6" ry="4.2"/><ellipse cx="78" cy="85.5" rx="5.6" ry="4.2"/>
+    .brick-outline { fill: none; stroke: #104f43; stroke-width: 2; stroke-linejoin: round; }</style>
+ <g class="layer">
+  <title>Layer 1</title>
+  <path class="brick-face-top" d="m90.14,21.3l0,86l-43,0l0,-86l43,0z" id="svg_1" transform="matrix(1 0 0 1 6.00739 6.4695)"/>
+  <path class="brick-face-short" d="m103.23,-2.03l-13,23l-43,0l13,-23l43,0z" id="svg_2" transform="matrix(1 0 0 1 6.00739 6.4695)"/>
+  <g class="brick-studs" id="svg_3" transform="matrix(0 1 -1 0 122.925 -2.2885)">
+   <ellipse cx="41" cy="38" id="svg_4" rx="6.5" ry="6.5"/>
+   <ellipse cx="62" cy="38" id="svg_5" rx="6.5" ry="6.5"/>
+   <ellipse cx="83" cy="38" id="svg_6" rx="6.5" ry="6.5"/>
+   <ellipse cx="104" cy="38" id="svg_7" rx="6.5" ry="6.5"/>
+   <ellipse cx="41" cy="59" id="svg_8" rx="6.5" ry="6.5"/>
+   <ellipse cx="62" cy="59" id="svg_9" rx="6.5" ry="6.5"/>
+   <ellipse cx="83" cy="59" id="svg_10" rx="6.5" ry="6.5"/>
+   <ellipse cx="104" cy="59" id="svg_11" rx="6.5" ry="6.5"/>
   </g>
-  <path class="brick-outline" d="M56 22 88 7 126 37 111 87 79 102 41 72Z"/>
+  <path class="brick-face-bottom" d="m103.45,-1.93l0,86l-13,23l0,-86l13,-23z" id="svg_12" transform="matrix(1 0 0 1 6.00739 6.4695)"/>
+  <path class="brick-outline" d="m103.98,-1.21l0,86l-13,23l-43,0l0,-86l13,-23l43,0z" id="svg_13" transform="matrix(1 0 0 1 5.15778 5.11011)"/>
+ </g>
 </svg>
