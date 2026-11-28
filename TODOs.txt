@@ -6,4 +6,4 @@
 - [x] Die app muss robust sein sodass die Tablets dort 20/30/60 Minuten liegen können ohne sich abzumelden
 - [x] Y-Achse soll Wahrscheinlichkeiten als Bruch anzeigen. Die unterteilung soll bei 1/10 liegen.
 - [x] Die Frage auf der Startseite im unteren bereich soll entfernt werden.
-- Das Logo der Website soll auch ein Legostein sein.
+- [x] Das Logo der Website soll auch ein Legostein sein.
