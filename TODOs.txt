@@ -5,5 +5,5 @@
 - [x] Die Startseite braucht eine andere URL als die registrierung für die Schüler. Der Grund: beim aufrufen der Seite bekommen die schüler ganz kurz die session startseite angezeigt. nicht das die schüler damit neue sessions starten. Lieber dann erst eine andere seite mit Du wirst angemeldet... oder so anzeigen.
 - [x] Die app muss robust sein sodass die Tablets dort 20/30/60 Minuten liegen können ohne sich abzumelden
 - [x] Y-Achse soll Wahrscheinlichkeiten als Bruch anzeigen. Die unterteilung soll bei 1/10 liegen.
-- Die Frage auf der Startseite im unteren bereich soll entfernt werden.
+- [x] Die Frage auf der Startseite im unteren bereich soll entfernt werden.
 - Das Logo der Website soll auch ein Legostein sein.
