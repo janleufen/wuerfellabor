@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getDatabase, ref, set, push, get, remove, query, orderByChild, equalTo, onChildAdded } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getAuth, setPersistence, browserLocalPersistence, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getDatabase, ref, set, push, get, remove, query, orderByChild, equalTo, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import { firebaseConfig } from "./firebase-config.js";
 import Chart from "https://cdn.jsdelivr.net/npm/chart.js@4.4.3/auto/+esm";
 
@@ -186,11 +186,21 @@ async function initialize() {
   try {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const credential = await signInAnonymously(auth);
-    uid = credential.user.uid;
+    await setPersistence(auth, browserLocalPersistence);
+    await auth.authStateReady();
+    const user = auth.currentUser || (await signInAnonymously(auth)).user;
+    uid = user.uid;
     database = getDatabase(app);
-    connection.classList.add("online");
-    connectionLabel.textContent = "Verbunden";
+    onValue(ref(database, ".info/connected"), (snapshot) => {
+      const online = snapshot.val() === true;
+      connection.classList.toggle("online", online);
+      connection.classList.toggle("offline", !online);
+      connectionLabel.textContent = online ? "Verbunden" : "Verbindung wird hergestellt";
+    }, (error) => {
+      connection.classList.add("offline");
+      connectionLabel.textContent = "Verbindung fehlgeschlagen";
+      console.error(error);
+    });
     if (sessionId) await openSession();
     else await loadSessions();
   } catch (error) {

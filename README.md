@@ -31,4 +31,4 @@ Lade die Dateien in ein GitHub-Repository und aktiviere unter **Settings > Pages
 
 Die Lehrkraft benennt und startet eine Runde und projiziert die angezeigte QR-Code-Teilnahme. Der Teilnahme-Link öffnet direkt die Schüleransicht mit einer Anmeldeanzeige; die Startseite zum Erstellen von Runden wird dort nicht eingeblendet. Gespeicherte Runden erscheinen auf der Startseite und können dort geöffnet oder gelöscht werden. Schüler tippen nach jedem Wurf auf die passende Lage des Legosteins. Die Lehreransicht aktualisiert Diagramm und Zähler live.
 
-Es werden keine Namen abgefragt. Anonyme Firebase-IDs und Würfe bleiben gespeichert, bis sie in der Firebase Console gelöscht werden. Vor dem Einsatz sollten die schulischen Datenschutzvorgaben geprüft werden.
+Es werden keine Schülernamen abgefragt. Die anonyme Anmeldung wird im Browser dauerhaft gespeichert; Firebase erneuert die Sitzungstokens automatisch und verbindet die Realtime Database nach einem Verbindungsabbruch erneut. Anonyme Firebase-IDs und Würfe bleiben gespeichert, bis sie in der Firebase Console gelöscht werden. Vor dem Einsatz sollten die schulischen Datenschutzvorgaben geprüft werden.
